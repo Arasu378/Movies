@@ -1,0 +1,24 @@
+
+<div>
+  <h2 class="movies">Movie List</h2>
+</div>
+
+  <mat-grid-list  cols="3" class="item" >
+    <mat-grid-tile  *ngFor="let movie of moviesList">
+  <mat-card  class="mat-card_c" (click)="movieDetails(movie)">
+    <mat-card-header>
+      <mat-card-title>{{movie.title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-subtitle>
+      <mat-icon>star rate</mat-icon>
+      {{movie.rating}}
+    </mat-card-subtitle>
+    <img matCardImage src="{{movie.medium_cover_image}}" class="image">
+    <!--<mat-card-content>-->
+      <!--{{movie.synopsis}}-->
+    <!--</mat-card-content>-->
+  </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+
