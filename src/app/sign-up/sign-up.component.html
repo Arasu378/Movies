@@ -1,0 +1,47 @@
+<div class="flexbox-parent">
+<div class="parent-back" layout-align="center center">
+  <mat-card class="mat-card-signup">
+  <form [formGroup]="rForm" (ngSubmit)="signUp()" novalidate>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="First Name" formControlName="firstName" required>
+        <mat-error *ngIf="rForm.get('firstName').invalid">{{getFirstNameErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Last Name" formControlName="lastName" required>
+        <mat-error *ngIf="rForm.get('lastName').invalid">{{getLastNameErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Company Name" formControlName="companyName" required>
+        <mat-error *ngIf="rForm.get('companyName').invalid">{{getCompanyNameErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Phone" formControlName="phone" required>
+        <mat-error *ngIf="rForm.get('phone').invalid">{{getPhoneErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Enter your email" formControlName="email" required>
+        <mat-error *ngIf="rForm.get('email').invalid">{{getEmailErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="example-container">
+      <mat-form-field hintLabel="minimum 3 characters">
+        <input matInput placeholder="Enter your domain" formControlName="domain" required>
+        <mat-error *ngIf="rForm.get('domain').invalid">{{getDomainErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="example-button-row">
+      <button mat-raised-button color="warn" value="Submit Form" [disabled]="rForm.invalid" >SignUp</button>
+    </div>
+  </form>
+  </mat-card>
+</div>
+</div>

@@ -1,38 +1,39 @@
-<div class="container">
+<div class="flexbox-parent">
+  <div class="parent-back" layout-align="center center">
   <div [hidden]="submitted">
-<h1> Login </h1>
-<form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-  <mat-card>
+    <mat-card class="mat-card-signup">
+<form (ngSubmit)="onLogin()" [formGroup]="rForm" novalidate>
+
+  <div class="example-form">
+    <mat-form-field>
+      <input matInput placeholder="Domain" formControlName="domain" required>
+      <mat-error *ngIf="rForm.get('domain').invalid">{{getDomainError()}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="example-form">
+    <mat-form-field>
+      <input matInput placeholder="Enter your email" formControlName="email" required>
+      <mat-error *ngIf="rForm.get('email').invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
     <div class="example-form">
       <mat-form-field>
-        <input matInput placeholder="Domain" [formControl]="domain" required>
-        <mat-error *ngIf="domain.invalid">{{getDomainError()}}</mat-error>
-      </mat-form-field>
-    </div>
-    <div class="example-form">
-      <mat-form-field>
-        <input matInput placeholder="Enter your email" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-    </div>
-    <div class="example-form">
-      <mat-form-field>
-        <input matInput placeholder="Enter your password" [formControl]="password" [type]="hide ? 'password' : 'text'" required>
+        <input matInput placeholder="Enter your password" formControlName="password" [type]="hide ? 'password' : 'text'" required>
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-        <mat-error *ngIf="password.invalid">{{getErrorPassword()}}</mat-error>
+        <mat-error *ngIf="rForm.get('password').invalid">{{getErrorPassword()}}</mat-error>
       </mat-form-field>
     </div>
     <div class="example-button-row">
-      <button mat-raised-button color="warn" (click)="loginClicked()">Login</button>
+      <button mat-button routerLink="/signup">Sign Up</button>
     </div>
-
-  </mat-card>
-
-
+    <div class="example-button-row">
+      <button mat-raised-button color="warn" [disabled]="rForm.invalid">Login</button>
+    </div>
+  </div>
 </form>
+    </mat-card>
   </div>
 
-
+  </div>
 
 </div>
 

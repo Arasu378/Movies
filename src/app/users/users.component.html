@@ -1,0 +1,38 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <div class="example-container mat-elevation-z5">
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="profile">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Profile</mat-header-cell>
+        <mat-cell  *matCellDef="let row">{{row.profile}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.firstName}} </mat-cell>
+      </ng-container>e
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.lastName}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="language">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Language </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.language}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns; " (click)="rowClicked(row)"></mat-row>
+
+    </mat-table>
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+
+    </mat-paginator>
+
+  </div>
+

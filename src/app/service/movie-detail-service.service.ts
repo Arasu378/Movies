@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {ListResponse} from './models/ListResponse';
+import {ListResponse} from '../models/ListResponse';
 import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs/observable/of';
-import {environment} from "../environments/environment";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class MovieDetailServiceService {

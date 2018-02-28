@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MovieDetailServiceService} from '../movie-detail-service.service';
+import {MovieDetailServiceService} from '../service/movie-detail-service.service';
 import {ActivatedRoute, ParamMap, Params} from '@angular/router';
 import {ListResponse} from '../models/ListResponse';
 import {Movie} from '../models/Movie';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MoviesListService} from '../movies-list.service';
+import {MoviesListService} from '../service/movies-list.service';
 import {ListResponse} from '../models/ListResponse';
 import {Movie} from '../models/Movie';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -7,7 +7,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-browse-movies',
   templateUrl: './browse-movies.component.html',
-  styleUrls: ['./browse-movies.component.css']
+  styleUrls: ['./browse-movies.component.css'],
+  styles: [ 'body { background-color: gray; }']
 })
 export class BrowseMoviesComponent implements OnInit {
   movieList: ListResponse;

@@ -4,6 +4,7 @@
   padding: 0;
   width: 15em;
   alignment: center;
+  position: relative;
 }
 .movies .badge {
   display: inline-block;
@@ -22,24 +23,22 @@
 .movie-card {
   max-width: 400px;
 }
-.movies.image {
-  height:150px;
-  width:100px;
-  background-size: cover;
-}
+
 
 mat-grid-tile {
 }
 .item {
-  border-radius: 4px 0 0 4px;
-  margin: 25px;
+ margin-left: 20px;
+ margin-right: 20px;
 }
 .mat-card_c{
-  height:auto;
-  width:auto;
+  height: 275px;
+  width: 200px;
+  margin-bottom: 15px;
+  margin-top: 15px;
   }
 .image {
-  height: auto;
-  width: auto;
+  height: 275px;
+  width: 200px;
 }
 

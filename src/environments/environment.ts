@@ -5,5 +5,7 @@
 
 export const environment = {
   production: false,
-  apiUrl : 'https://yts.am'
+  apiUrl : 'https://yts.am',
+  teamConnectUrl: 'http://fieldout.ap-south-1.elasticbeanstalk.com',
+  testingurl: 'http://210.18.177.47:1235/teamconnect'
 };
