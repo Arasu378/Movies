@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Injectable, OnInit, ViewChild} from '@angular/core';
 import {CustomersService} from '../service/customers.service';
 import {CustomerResponse} from '../models/CustomerResponse';
 import {Customers} from '../models/Customers';

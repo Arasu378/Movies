@@ -27,6 +27,11 @@ import {CustomersService} from './service/customers.service';
 import {RegisterService} from './service/register.service';
 import {ApiError} from './storage/ApiError';
 import { SignupDialogComponent } from './signup-dialog/signup-dialog.component';
+import { CustomFieldsComponent } from './custom-fields/custom-fields.component';
+import { GraphCompComponent } from './graph-comp/graph-comp.component';
+import { SecondGraphComponent } from './second-graph/second-graph.component';
+import {GraphService} from './service/graph.service';
+import {MessageServiceService} from './service/message-service.service';
 
 
 @NgModule({
@@ -41,7 +46,10 @@ import { SignupDialogComponent } from './signup-dialog/signup-dialog.component';
     SignUpComponent,
     TestSortComponent,
     CustomersComponent,
-    SignupDialogComponent
+    SignupDialogComponent,
+    CustomFieldsComponent,
+    GraphCompComponent,
+    SecondGraphComponent
 
   ],
   imports: [
@@ -54,7 +62,8 @@ import { SignupDialogComponent } from './signup-dialog/signup-dialog.component';
     ReactiveFormsModule
   ],
   providers: [MoviesListService, MovieDetailServiceService,
-    LoginService, StorageService, UsersService, AuthModule, CustomersService, RegisterService, ApiError],
+    LoginService, StorageService, UsersService, AuthModule, CustomersService, RegisterService, ApiError, GraphService,
+    MessageServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
