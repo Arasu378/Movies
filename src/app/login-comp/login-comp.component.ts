@@ -74,6 +74,9 @@ export class LoginCompComponent implements OnInit {
         if ( this.loginResponse.userDetails.token != null ) {
           this.storage.setToken(this.loginResponse.userDetails.token);
         }
+        if (this.loginResponse.userDetails.id != null) {
+          this.storage.setUserId(this.loginResponse.userDetails.id);
+        }
         this.router.navigate(['users']);
       }
   }

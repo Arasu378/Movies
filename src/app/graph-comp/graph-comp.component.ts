@@ -1,28 +1,31 @@
 import {Component, Injectable, OnInit} from '@angular/core';
+import {GraphMapService} from '../graph-map.service';
 import {GraphService} from '../service/graph.service';
-import {DateModel} from '../models/DateModel';
+import {StorageService} from '../storage/storage.service';
+import {DatePipe} from '@angular/common';
 import {GraphResponse} from '../models/GraphResponse';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {GraphResult} from '../models/GraphResult';
 @Component({
   selector: 'app-graph-comp',
   templateUrl: './graph-comp.component.html',
   styleUrls: ['./graph-comp.component.css']
 })
 export class GraphCompComponent implements OnInit {
-  private graphData = new  BehaviorSubject<GraphResponse>(new GraphResponse());
-  public graphPublicData = this.graphData.asObservable();
-  constructor(private graphService: GraphService) { }
-
+  constructor(private graphService: GraphService, private storage: StorageService, private datePipe: DatePipe, private dataService: GraphMapService) { }
+  private date: string;
+  responseData: GraphResponse;
   ngOnInit() {
     this.getGraphAPI();
   }
 
    getGraphAPI(): void {
-    this.graphService.getGraphAPI('5a85753baa9b030ff7ecdd93', new DateModel('2018-03-02'))
-      .subscribe(response => {
-        console.log('respn : ' + JSON.stringify(response));
-        this.graphData.next(response);
-      }, error2 => console.error('error : ' + error2));
+     this.date = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+     console.log('Date2 : ' + this.datePipe.transform(new Date(), 'yyyy-MM-dd'));
+     this.graphService.getGraphAPI(this.storage.getUserId(), JSON.stringify( {'dateString': this.date}))
+       .subscribe(response => {
+         this.responseData =  response;
+         this.dataService.setData(response);
+       }, error2 => console.error('error : ' + error2));
 
-  }
+   }
 }

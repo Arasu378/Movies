@@ -17,6 +17,12 @@ export class StorageService {
   public getToken(): string {
     return sessionStorage.getItem('token');
   }
+  public setUserId(userId: string): void {
+    sessionStorage.setItem('userId', userId);
+  }
+  public getUserId(): string {
+    return sessionStorage.getItem('userId');
+  }
 
 
 }

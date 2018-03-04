@@ -6,28 +6,20 @@ import {of} from 'rxjs/observable/of';
 import {CustomerResponse} from '../models/CustomerResponse';
 import {StorageService} from '../storage/storage.service';
 import {catchError, tap} from 'rxjs/operators';
+import {HandleError, HttpErrorHandlerService} from '../cache/http-error-handler.service';
 
 @Injectable()
 export class CustomersService {
-  url = environment.teamConnectUrl + '/customers/getAll';
-  private  httpOptions = {
-    headers: new HttpHeaders().set('Content-Type', 'application/json')
-      .set('Authorization', this.storage.getToken())
-      .set('idDomain', this.storage.getDomain())
-  };
-  constructor(private http: HttpClient, private storage: StorageService) { }
+  url = environment.testingurl + '/customers/getAll';
+  private handleError: HandleError;
+
+  constructor(private http: HttpClient, private httpErrorHandler: HttpErrorHandlerService) {
+    this.handleError = this.httpErrorHandler.createHandleError('Graph Service');
+
+  }
   customersAll(): Observable<CustomerResponse> {
-    return this.http.get<CustomerResponse>(this.url, this.httpOptions )
-      .pipe(tap(response => console.log(response)),
-        catchError(this.handleError('getAllCustomers', new CustomerResponse())));
+    return this.http.get<CustomerResponse>(this.url)
+      .pipe(catchError(this.handleError('getAllCustomers', new CustomerResponse())));
   }
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
 
-      console.error(error);
-
-
-      return of(result as T);
-    };
-  }
 }

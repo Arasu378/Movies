@@ -7,31 +7,21 @@ import {catchError, tap} from 'rxjs/operators';
 import {of} from 'rxjs/observable/of';
 import {StorageService} from '../storage/storage.service';
 import {Technicians} from '../models/Technicians';
+import {HandleError, HttpErrorHandlerService} from '../cache/http-error-handler.service';
 
 @Injectable()
 export class UsersService {
-  private API_URL = environment.teamConnectUrl + '/users/getAll';
+  private API_URL = environment.testingurl + '/users/getAll';
+  private handleError: HandleError;
+  constructor(private http: HttpClient, private httpErrorHandler: HttpErrorHandlerService) {
+    this.handleError = this.httpErrorHandler.createHandleError('Graph Service');
 
-  constructor(private http: HttpClient, private storage: StorageService) { }
-  private  httpOptions = {
-    headers: new HttpHeaders().set('Content-Type', 'application/json')
-      .set('Authorization', this.storage.getToken())
-      .set('idDomain', this.storage.getDomain())
-  };
+  }
   getUsersList(): Observable<Technicians[]> {
-    return this.http.get<Technicians[]>(this.API_URL , this.httpOptions)
-      .pipe(tap(response => console.log( response )),
-      catchError(this.handleError('getAllUsers',  [])));
+    return this.http.get<Technicians[]>(this.API_URL)
+      .pipe(catchError(this.handleError('getAllUsers',  [])));
 
   }
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
 
-      console.error(error);
-
-
-      return of(result as T);
-    };
-  }
 
 }
